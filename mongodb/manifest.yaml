@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  # Labels for the Deployment object itself
+  labels:
+    project: roboshop
+    tier: db
+    component: mongodb
+spec:
+  replicas: 1
+  selector:
+    # The Deployment uses these to find and manage its Pods
+    matchLabels:
+      project: roboshop
+      tier: db
+      component: mongodb
+  # Template defines the Pods that will be created
+  template:
+    metadata:
+      # These MUST match the 'selector' labels above
+      labels:
+        project: roboshop
+        tier: db
+        component: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        image: prasanthreddymps/mongodb:1.0.0
