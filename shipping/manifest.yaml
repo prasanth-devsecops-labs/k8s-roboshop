@@ -45,11 +45,11 @@ spec:
         imagePullPolicy: Always # safe to pull everytime
         resources:
           requests:
-            cpu: "100m"
-            memory: "128Mi"
+            cpu: "150m"
+            memory: "256Mi"
           limits:
-            cpu: "100m"
-            memory: "128Mi"
+            cpu: "150m"
+            memory: "256Mi"
         readinessProbe:
           # httpGet:
           #   path: /health
