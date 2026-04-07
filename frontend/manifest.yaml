@@ -99,6 +99,10 @@ spec:
         tier: frontend
         component: frontend
     spec:
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: frontend
       containers:
       - name: frontend
         image: prasanthreddymps/frontend:1.0.0
@@ -125,9 +129,12 @@ spec:
             port: 80
           failureThreshold: 2
           periodSeconds: 10
-        envFrom:
-        - configMapRef:
-            name: frontend
+        volumeMounts:
+        - name: nginx-config
+          # by default it mounts and thinks as directory
+          mountPath: "/etc/nginx/nginx.conf"
+          subPath: nginx.conf
+          readOnly: true
 ---
 apiVersion: v1
 kind: Service
